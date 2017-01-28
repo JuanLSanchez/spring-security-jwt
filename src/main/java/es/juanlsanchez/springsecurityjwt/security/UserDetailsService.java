@@ -41,7 +41,7 @@ public class UserDetailsService
         throw new UserNotActivatedException("User " + login + " was not activated");
       }
       List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
-          .map(authority -> new SimpleGrantedAuthority(authority.getName()))
+          .map(authority -> new SimpleGrantedAuthority("ROLE_" + authority.getName()))
           .collect(Collectors.toList());
       return new org.springframework.security.core.userdetails.User(login, user.getPassword(),
           grantedAuthorities);

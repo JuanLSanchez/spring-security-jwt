@@ -14,6 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.data.repository.query.SecurityEvaluationContextExtension;
 
+import es.juanlsanchez.springsecurityjwt.security.AuthoritiesConstants;
+
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -40,6 +42,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     http.authorizeRequests().antMatchers("/api/authenticate").permitAll();
     http.authorizeRequests().antMatchers("/manage/health").permitAll();
     http.authorizeRequests().antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+    http.authorizeRequests().antMatchers("/api/user").hasRole(AuthoritiesConstants.USER);
+    http.authorizeRequests().antMatchers("/api/admin").hasRole(AuthoritiesConstants.ADMIN);
     http.httpBasic();
     http.exceptionHandling();
 
