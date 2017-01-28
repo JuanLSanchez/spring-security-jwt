@@ -1,0 +1,39 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false # Enable trace output.
+        web-allow-others: false # Enable remote access.
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      show-sql: true
+    properties:
+      hibernate.dialect: org.hibernate.dialect.H2Dialect
+  application:
+    name: spring-security-jwt
+  jackson.serialization:
+    write_dates_as_timestamps: false
+    write_date_timestamps_as_nanoseconds: false
+logging:
+  level:
+    root: WARN
+    org.springframework.web: INFO
+    org.hibernate: INFO
+    es.juanlsanchez.springsecurityjwt: DEBUG
+app:
+  c3p0:
+    datasource:
+      max-pool-size: 20
+      min-pool-size: 1
+      max-idle-time: 60
+      test-connection-on-checkout: false
+      test-connection-on-checkin: true
+      idle-connection-test-period: 30
+      jdbc-url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+      user: sa
+      password: 
+      driver-class: org.h2.Driver
